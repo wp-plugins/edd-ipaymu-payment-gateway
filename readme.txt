@@ -49,5 +49,9 @@ This happen because Ipaymu require their member verify their personal info for s
 
 == Changelog ==
 
-= 1.1 =
+= 1.0.0 =
 Initial release
+
+= 1.0.1 =
+Fix bugs when receive ipaymu notify.
+Fix payment don't marked as "complete" after buyer complete their purchases.

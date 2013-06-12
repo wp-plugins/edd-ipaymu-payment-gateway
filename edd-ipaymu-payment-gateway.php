@@ -3,7 +3,7 @@
 Plugin Name: EDD iPaymu Payment Gateway
 Plugin URI: http://www.pengunjungblog.com/plugins/edd-ipaymu/
 Description: Accept payments through iPaymu for your Digital Store powered Easy Digital Downloads, a payment gateway for Indonesia.
-Version: 1.0.0
+Version: 1.0.1
 Author: Syaiful Bahri
 Author URI: http://www.pengunjungblog.com
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -276,7 +276,7 @@ class EDD_Ipaymu {
 				$session_id = $ipaymu->sessionID;
 				
 				//save to database first, we will need it
-				update_post_meta( $payment, '_ipaymu_session_id', $session_id );
+				add_post_meta( $payment, '_ipaymu_session_id', $session_id );
 
 				//get rid of cart contents
 				edd_empty_cart();
@@ -320,7 +320,7 @@ class EDD_Ipaymu {
 	 * @return host of url that given on param, or false if failed extract url
 	 * @access private
 	 */
-	private static function check_referer_notify( $url ) {
+	public function check_referer_notify( $url ) {
 	
 		if ( ! ( is_string( $url ) && $url ) )
 			return false;
@@ -382,7 +382,7 @@ class EDD_Ipaymu {
 			// check url referrer..
 			if( ! function_exists( 'wp_get_referer' ) )
 				include_once( ABSPATH . 'wp-includes/functions.php' );
-			$referer = wp_get_referer();
+				$referer = wp_get_referer();
 			if( empty( $referer ) )
 				return;
 			
@@ -407,8 +407,11 @@ class EDD_Ipaymu {
 			/* everything has been verified, update the payment to "complete"
 			*  berhasil is Indonesian language that mean success.
 			*/
-			if( $ipaymu_status = 'berhasil' )
+			if( $ipaymu_status == 'berhasil' ) :
 				edd_update_payment_status( $payment_id, 'publish' );
+				delete_post_meta( $payment_id, '_ipaymu_session_id', $payment_session );
+			endif;
+
 			
 		}//end statement
 		
