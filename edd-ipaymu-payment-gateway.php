@@ -3,7 +3,7 @@
 Plugin Name: EDD iPaymu Payment Gateway
 Plugin URI: http://www.pengunjungblog.com/plugins/edd-ipaymu/
 Description: Accept payments through iPaymu for your Digital Store powered Easy Digital Downloads, a payment gateway for Indonesia.
-Version: 1.0.1
+Version: 1.0.2
 Author: Syaiful Bahri
 Author URI: http://www.pengunjungblog.com
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -363,15 +363,15 @@ class EDD_Ipaymu {
 		} //end statement
 		
 			
-		if ( isset( $_GET['status'] ) && isset( $_GET['trx_id'] ) && isset( $_GET['sid'] ) && isset( $_GET['product'] ) && isset( $_GET['quantity'] ) && isset( $_GET['total'] ) && isset( $_GET['comments'] ) ) {
+		if ( isset( $_POST['status'] ) && isset( $_POST['trx_id'] ) && isset( $_POST['sid'] ) && isset( $_POST['product'] ) && isset( $_POST['quantity'] ) && isset( $_POST['total'] ) && isset( $_POST['comments'] ) ) {
 									
 			// setup each of the variables from iPaymu
-			$payment_id = $_GET['comments'] ? $_GET['comments'] : null;
-			$ipaymu_status = strtolower( $_GET['status'] ) ? strtolower( $_GET['status'] ) : null;
-			$ipaymu_session = $_GET['sid'] ? $_GET['sid'] : null;
-			$ipaymu_product = $_GET['product'] ? $_GET['product'] : null;
-			$ipaymu_quantity = $_GET['quantity'] ? $_GET['quantity'] : null;
-			$ipaymu_amount = $_GET['total'] ? $_GET['total'] : null;
+			$payment_id = $_POST['comments'] ? $_POST['comments'] : null;
+			$ipaymu_status = strtolower( $_POST['status'] ) ? strtolower( $_POST['status'] ) : null;
+			$ipaymu_session = $_POST['sid'] ? $_POST['sid'] : null;
+			$ipaymu_product = $_POST['product'] ? $_POST['product'] : null;
+			$ipaymu_quantity = $_POST['quantity'] ? $_POST['quantity'] : null;
+			$ipaymu_amount = $_POST['total'] ? $_POST['total'] : null;
 			
 			// retrieve the meta info for this payment
 			$payment_meta 		= get_post_meta( $payment_id, '_edd_payment_meta', true );

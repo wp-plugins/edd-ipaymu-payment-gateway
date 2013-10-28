@@ -3,9 +3,9 @@ Contributors: syaiful6
 Plugin Name: EDD Ipaymu Payment Gateway
 Tags: easy digital downloads, gateway, payment
 Text Domain: edd_ipaymu
-Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 1.5.5
+Requires at least: 3.5
+Tested up to: 3.7
+Stable tag: 1.0.0
 
 Accept payments through iPaymu for your Digital Store powered Easy Digital Downloads, a payment gateway for Indonesia.
 
@@ -55,3 +55,6 @@ Initial release
 = 1.0.1 =
 Fix bugs when receive ipaymu notify.
 Fix payment don't marked as "complete" after buyer complete their purchases.
+
+= 1.0.2 =
+Modify callback for notify in order to response new API from iPaymu.
